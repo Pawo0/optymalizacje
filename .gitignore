@@ -1,0 +1,9 @@
+# skompilowane
+gauss_bench
+a.out
+*.o
+*.out
+*.d
+
+# system
+.DS_Store
