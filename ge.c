@@ -27,7 +27,6 @@
 
 static double gtod_ref_time_sec = 0.0;
 
-/* Adapted from the bl2_clock() routine in the BLIS library */
 double dclock()
 {
   double the_time, norm_sec;
@@ -40,10 +39,7 @@ double dclock()
   return the_time;
 }
 
-/* rzeczywista liczba operacji zmiennoprzecinkowych:
- * dla kazdego k mamy (n-k-1) dzielen (mnozniki) oraz
- * 2*(n-k-1)^2 operacji (mnozenie + odejmowanie) w aktualizacji.
- * Po zsumowaniu:
+/* 
  *   FLOP = n(n-1)(2n-1)/3 + n(n-1)/2
  */
 double ge_flop(int SIZE)
@@ -52,7 +48,8 @@ double ge_flop(int SIZE)
   return n * (n - 1.0) * (2.0 * n - 1.0) / 3.0 + n * (n - 1.0) / 2.0;
 }
 
-/* ------------------- wersja referencyjna ------------------- */
+
+// ------------
 
 int ge_ref(double *A, int SIZE)
 {
@@ -69,7 +66,7 @@ int ge_ref(double *A, int SIZE)
   return 0;
 }
 
-/* ------------------- wersja zoptymalizowana ------------------- */
+// ----------------
 
 static void PackPivotRow(int n, const double *src, double *dst)
 {
@@ -208,11 +205,9 @@ int ge_opt(double *A, int SIZE)
     int kb = MIN(KC, SIZE - k0);
     int kend = k0 + kb;
 
-    /* faktoryzacja malego panelu k0 ... kend-1 */
     for (k = k0; k < kend; k++) {
       double pivot = A[IDX(k, k, SIZE)];
 
-      /* aktualizacja kolumn wewnatrz panelu (potrzebne do kolejnych pivotow) */
       for (jj = k + 1; jj < kend; jj++) {
         register double pj = A[IDX(k, jj, SIZE)];
         for (ii = k + 1; ii < SIZE; ii++) {
@@ -221,8 +216,7 @@ int ge_opt(double *A, int SIZE)
         }
       }
 
-      /* wiersze wewnatrz panelu musza byc zaktualizowane takze na prawo
-       * od panelu - beda uzyte jako wiersze U w aktualizacji blokowej */
+      /* wiersze wewnatrz panelu po prawej od panelu */
       if (k + 1 < kend) {
         int ib = kend - (k + 1);
 
@@ -262,9 +256,8 @@ int ge_opt(double *A, int SIZE)
   return 0;
 }
 
-/* ------------------- weryfikacja poprawnosci ------------------- */
+// ----------------
 
-/* maksymalny blad wzgledny pomiedzy dwoma macierzami */
 double verify(const double *A, const double *B, int SIZE)
 {
   int i, j;

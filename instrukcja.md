@@ -16,11 +16,21 @@ gcc -O2 -mavx2 -mfma ge.c -o ge
 ./ge 1000
 ```
 
-Cały benchmark (sam kompiluje):
+Cały benchmark (sam kompiluje, wypisuje gotową tabelę ze speedupem
+i wysyceniem szczytu — do screena do sprawozdania):
 
 ```bash
 ./run.sh
 ```
+
+Sprawdzenie procesora (też do screena do sprawozdania):
+
+```bash
+lscpu | grep -E "Model name|CPU max MHz|Core|Thread|L1d|L2|L3"; echo "--- jednostki wektorowe ---"; grep -m1 flags /proc/cpuinfo | tr ' ' '\n' | grep -E "^(sse4_1|sse4_2|avx|avx2|fma)$"
+```
+
+Uwaga: lscpu pokazuje sumy dla wszystkich rdzeni — L1d 128 KiB / 4 rdzenie
+= 32 KB na rdzeń, L2 1 MiB / 4 = 256 KB na rdzeń.
 
 ## Co program robi
 
