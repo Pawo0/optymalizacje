@@ -93,7 +93,7 @@ GFLOP/s liczone jest jako `FLOP(n) / czas / 1e9`.
 ## 7. Wnioski
 
 - **Wersja zoptymalizowana jest 2–3 razy szybsza od referencyjnej**
-  i osiąga do ~12.8 GFLOP/s, czyli ok. 20% teoretycznego szczytu rdzenia
+  i osiąga do ~14 GFLOP/s, czyli ok. 22% teoretycznego szczytu rdzenia
   (64 GFLOP/s).
 - **Eliminacja Gaussa ma niską intensywność arytmetyczną** – aktualizacja
   rangi 1 wykonuje tylko 2 FLOP na każdy załadowany i zapisany element,
