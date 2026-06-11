@@ -90,22 +90,6 @@ GFLOP/s liczone jest jako `FLOP(n) / czas / 1e9`.
 
 <img width="1014" height="514" alt="image" src="https://github.com/user-attachments/assets/33d8a417-c8cc-4571-a65e-bce882f06cfe" />
 
-Wysycenie liczone względem teoretycznego szczytu jednego rdzenia
-(64 GFLOP/s, sekcja 2).
-
-| SIZE | ref [GFLOP/s] | opt [GFLOP/s] | przyspieszenie | wysycenie opt | max błąd wzgl. | weryfikacja |
-|---:|---:|---:|---:|---:|---:|:---:|
-| 200  | 4.52 | 12.80 | 2.8x | 20.0% | 8.4e-10 | OK |
-| 400  | 4.49 | 12.77 | 2.8x | 20.0% | 6.1e-10 | OK |
-| 600  | 4.27 | 12.13 | 2.8x | 19.0% | 6.1e-11 | OK |
-| 800  | 4.01 | 12.12 | 3.0x | 18.9% | 5.9e-09 | OK |
-| 1000 | 3.73 | 11.35 | 3.0x | 17.7% | 1.1e-07 | OK |
-| 1200 | 3.16 | 8.16  | 2.6x | 12.8% | 2.8e-09 | OK |
-| 1400 | 2.89 | 6.38  | 2.2x | 10.0% | 1.6e-08 | OK |
-| 1600 | 2.82 | 5.79  | 2.1x |  9.0% | 5.8e-08 | OK |
-| 1800 | 2.66 | 5.29  | 2.0x |  8.3% | 1.2e-08 | OK |
-| 2000 | 2.65 | 5.50  | 2.1x |  8.6% | 5.3e-08 | OK |
-
 ## 7. Wnioski
 
 - **Wersja zoptymalizowana jest 2–3 razy szybsza od referencyjnej**
